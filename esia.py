@@ -109,24 +109,33 @@ def transform_txt_to_json(f):
         print("Error in transform:", e)
 
 def write_info_to_txt(json_file):
-    """ Write passport data to .txt file """
+    """ Write passport data to .txt file in folder passport_data """
     try:
+        if os.path.exists('passport_data'):
+            pass
+        else:
+            os.mkdir('passport_data')
         with open("source.json") as jsonFile:
             json_object = json.load(jsonFile)
-            type_docs = json_object["data"]["user"]["person"]["docs"][0]["type"]
+            get_id = json_object["data"]["user"]["userId"]
+            type_docs = json_object["data"]["user"]["person"]["docs"][0]["type"]          
             if type_docs != "RF_PASSPORT":
-                with open('passport.txt', 'a') as passport_data:
+                with open('./passport_data/passport.txt', 'a') as passport_data:
                     passport_data.write(f'Время добавления: {datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M")}\n')
                     passport_data.write(f'ФИО: {json_object["data"]["user"]["formattedName"]}\n')
                     passport_data.write(f'Паспорт РФ: cерия: {json_object["data"]["user"]["person"]["docs"][1]["series"]}, номер: {json_object["data"]["user"]["person"]["docs"][1]["number"]}\n')
-                    passport_data.write(f'Выдан: {json_object["data"]["user"]["person"]["docs"][1]["issuedBy"]}\n\n')
-            else:    
-                with open('passport.txt', 'a') as passport_data:
+                    passport_data.write(f'Выдан: {json_object["data"]["user"]["person"]["docs"][1]["issuedBy"]}\n\n')                 
+            else:  
+                with open('./passport_data/passport.txt', 'a') as passport_data:
                     passport_data.write(f'Время добавления: {datetime.strftime(datetime.now(), "%d/%m/%Y %H:%M")}\n')
                     passport_data.write(f'ФИО: {json_object["data"]["user"]["formattedName"]}\n')
                     passport_data.write(f'Паспорт РФ: cерия: {json_object["data"]["user"]["person"]["docs"][0]["series"]}, номер: {json_object["data"]["user"]["person"]["docs"][0]["number"]}\n')
-                    passport_data.write(f'Выдан: {json_object["data"]["user"]["person"]["docs"][0]["issuedBy"]}\n\n')
+                    passport_data.write(f'Выдан: {json_object["data"]["user"]["person"]["docs"][0]["issuedBy"]}\n\n')       
         passport_data.close()
+        if os.path.isfile(r'C:\Users\fatal\Desktop\1\passport_data\passport' + '[' + str(get_id) + ']' + '.txt'):
+            pass
+        else:
+            os.rename(r'C:\Users\fatal\Desktop\1\passport_data\passport.txt', r'C:\Users\fatal\Desktop\1\passport_data\passport' + '[' + str(get_id) + ']' + '.txt')         
         print("Write info: OK!")
     except Exception as e:
         print("Error in write to file: ", e)
@@ -136,7 +145,7 @@ def delete_file():
     try:
         os.remove('source.json')
         os.remove('source.txt')
-        print("Files was deleted!")
+        print("TMP files was delete!")
     except OSError as e:
         print("Error: %s" % (e.strerror))
 
