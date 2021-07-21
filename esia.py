@@ -31,7 +31,7 @@ def run_driver():
     except Exception as e:
         print("Error: ", e)
 
-def get_esia_session(login_url: str, personal_page: str, driver) -> bytes or Exception:
+def get_esia_session(login_url: str, personal_page: str, driver) -> bytes or str:
     """ Get session in ESIA """
     try:
         driver.get(login_url)
