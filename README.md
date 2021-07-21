@@ -36,5 +36,5 @@
 **Passport file after run script**:
 ![PassportFile](https://github.com/ZaytsevNS/esia_get_data/blob/main/passport.jpg)
 
-**Project directory after run script**
+**Project directory after run script**:
 ![Directory](https://github.com/ZaytsevNS/esia_get_data/blob/main/directory.jpg)
