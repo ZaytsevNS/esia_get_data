@@ -54,7 +54,7 @@ def get_esia_session(login_url: str, personal_page: str, driver) -> bytes or str
         else:
             print("Error! Status: ", requests.get(login_url).status_code)        
     except Exception as e:
-        print(e)
+        print("Error in get session: ", e)
     finally:
         driver.delete_all_cookies()
         driver.close()
