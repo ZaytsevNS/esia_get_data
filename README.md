@@ -22,14 +22,13 @@
   ```bash 
   pip install -r requirements.txt
   ```
-6) Change this line:
+6) Download [ChromeDriwer](https://chromedriver.chromium.org/downloads)
+7) Change this line, where executable_path is directory path that contains the executable:
   ```python
-  driver = webdriver.Chrome(executable_path=r"D:\Program\Anaconda3\Scripts\chromedriver.exe", chrome_options=options)
+  driver = webdriver.Chrome(executable_path=r"YOUR_PATH", chrome_options=options)
   ```
-9)    app.py and go to your web browser and type in the search field: **http://localhost:8000/**
-10) Enter your name, select the required numerical values and options and click to button 'Показать результаты'.
-If you want to clear the form click to button 'Очистить форму'.
-8) When you’re done working on a project deactivate virtual environment: 
+8) Run esia.py
+9) When you’re done working on a project deactivate virtual environment: 
   ```bash 
   venv/Scripts/deactivate
   ```
